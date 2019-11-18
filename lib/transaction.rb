@@ -1,18 +1,23 @@
 
 class Transaction
+  attr_accessor :date, :credit, :debit, :account
   def initialize
-    @full_transaction = []
+    @date = nil
+    @credit = nil
+    @debit = nil
+    @account = nil
   end
 
-  def deposit(date, amount)
-    @full_transaction.push(date, amount)
+  def deposit(date, value, balance = 0)
+    @date = date
+    @credit = value
+    @account = balance
   end
 
-  def withdrawal(date, amount)
-    @full_transaction.push(date, amount)
+  def withdrawal(date, value, balance = 0)
+    @date = date
+    @debit = value
+    @account = balance
   end
 
-  def get_transaction
-    return @full_transaction
-  end
 end
