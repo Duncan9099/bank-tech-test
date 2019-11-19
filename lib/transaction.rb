@@ -11,13 +11,13 @@ class Transaction
 
   def deposit(date, value, balance = 0)
     @date = date
-    @credit = value
-    @account = balance
+    @credit = '%.2f' % value
+    @account = '%.2f' % balance
   end
 
   def withdrawal(date, value, balance = 0)
     @date = date
-    @debit = value
-    @account = balance
+    @debit = '%.2f' % value
+    @account = '%.2f' % balance
   end
 end

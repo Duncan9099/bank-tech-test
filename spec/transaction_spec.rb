@@ -9,19 +9,19 @@ describe 'transaction' do
     it 'transaction records deposit of 500 dollars on 01/01/2019' do
       transaction.deposit('01/01/2019', 500)
       expect(transaction.date).to eq('01/01/2019')
-      expect(transaction.credit).to eq(500)
+      expect(transaction.credit).to eq('500.00')
     end
 
     it 'transaction records deposit of 1000 dollars on 01/01/2019' do
       transaction.deposit('01/01/2019', 1000)
       expect(transaction.date).to eq('01/01/2019')
-      expect(transaction.credit).to eq(1000)
+      expect(transaction.credit).to eq('1000.00')
     end
 
     it 'transaction records deposit of 700 dollars on 02/02/2019' do
       transaction.deposit('02/02/2019', 700)
       expect(transaction.date).to eq('02/02/2019')
-      expect(transaction.credit).to eq(700)
+      expect(transaction.credit).to eq('700.00')
     end
   end
 
@@ -29,19 +29,19 @@ describe 'transaction' do
     it 'transaction records withdrawal of 500 dollars on 01/01/2019' do
       transaction.withdrawal('01/01/2019', 500)
       expect(transaction.date).to eq('01/01/2019')
-      expect(transaction.debit).to eq(500)
+      expect(transaction.debit).to eq('500.00')
     end
 
     it 'transaction records withdrawal of 1000 dollars on 01/01/2019' do
       transaction.withdrawal('01/01/2019', 1000)
       expect(transaction.date).to eq('01/01/2019')
-      expect(transaction.debit).to eq(1000)
+      expect(transaction.debit).to eq('1000.00')
     end
 
     it 'transaction records withdrawal of 700 dollars on 02/02/2019' do
       transaction.withdrawal('02/02/2019', 700)
       expect(transaction.date).to eq('02/02/2019')
-      expect(transaction.debit).to eq(700)
+      expect(transaction.debit).to eq('700.00')
     end
   end
 end
