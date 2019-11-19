@@ -24,6 +24,12 @@ describe 'account' do
       expect(account.account).to eq(600)
       expect(account.transaction_history).to eq([transaction, transaction2])
     end
+
+    it 'deposit of -100 returns false' do
+      allow(transaction).to receive(:deposit).with('01/01/2019', 500, 500)
+      allow(transaction2).to receive(:deposit).with('01/01/2019', -100, 400)
+      expect(account.deposit('01/01/2019', -100, transaction2)).to be(false)
+    end
   end
 
   describe '#withdrawal' do
@@ -41,6 +47,12 @@ describe 'account' do
       account.withdrawal('01/01/2019', 500)
       expect(account.account).to eq(0)
       expect(account.transaction_history).to eq([])
+    end
+
+    it 'withdrawal of -100 returns false' do
+      allow(transaction).to receive(:deposit).with('01/01/2019', 500, 500)
+      allow(transaction2).to receive(:withdrawal).with('01/01/2019', -100, 600)
+      expect(account.deposit('01/01/2019', -100, transaction2)).to be(false)
     end
   end
 end

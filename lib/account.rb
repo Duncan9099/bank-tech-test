@@ -11,14 +11,14 @@ class Account
   end
 
   def deposit(date, value, transaction = Transaction.new)
+    return false if value < 0
     new_balance = @account += value
     transaction.deposit(date, value, new_balance)
     @transaction_history.push(transaction)
   end
 
   def withdrawal(date, value, transaction = Transaction.new)
-    return false if @account < value
-
+    return false if @account < value || value < 0
     new_balance = @account -= value
     transaction.withdrawal(date, value, new_balance)
     @transaction_history.push(transaction)
