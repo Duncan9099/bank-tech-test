@@ -12,14 +12,14 @@ class Account
 
   def deposit(date, value, transaction = Transaction.new)
     return false if value < 0
-    new_balance = @account += value
+    new_balance = calculate_balance_for_deposit(value)
     transaction.deposit(date, value, new_balance)
     @transaction_history.push(transaction)
   end
 
   def withdrawal(date, value, transaction = Transaction.new)
-    return false if @account < value || value < 0
-    new_balance = @account -= value
+    return false if balance_insufficient(value) || value_is_negative(value)
+    new_balance = calculate_balance_for_withdrawal(value)
     transaction.withdrawal(date, value, new_balance)
     @transaction_history.push(transaction)
   end
@@ -33,5 +33,21 @@ class Account
 
   def title
     puts 'date || credit || debit || balance'
+  end
+
+  def calculate_balance_for_withdrawal(value)
+    @account -= value
+  end
+
+  def calculate_balance_for_deposit(value)
+    @account += value
+  end
+
+  def value_is_negative(value)
+    value < 0
+  end
+
+  def balance_insufficient(value)
+    @account < value
   end
 end

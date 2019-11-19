@@ -98,6 +98,22 @@
         1,
         0,
         null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        4,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        2,
+        null,
         null
       ],
       "/Users/duncanskinner/Documents/makers_academy/course/week_10/tech-tests/bank/lib/transaction.rb": [
@@ -231,6 +247,6 @@
         null
       ]
     },
-    "timestamp": 1574163692
+    "timestamp": 1574164042
   }
 }
