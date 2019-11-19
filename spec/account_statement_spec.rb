@@ -5,25 +5,35 @@ require_relative '../lib/account_statement'
 describe 'statement' do
   subject(:statement) { Statement.new }
 
+  let(:transaction) {
+    double :transaction,
+    date: '01/01/2019',
+    credit: 500,
+    debit: nil,
+    account: 500
+  }
+
+  let(:transaction2) {
+    double :transaction2,
+    date: '01/01/2019',
+    credit: nil,
+    debit: 200,
+    account: 300
+  }
+
   describe '#view_statement' do
-    xit 'statement prints one transaction' do
-      transaction_list = [['01/01/2019', 500, nil, 500]]
-      expect(statement.view_statement(transaction_list)).to include(
-        '01/01/2019 || 500 ||  || 500'
-      )
+    it 'statement prints one transaction' do
+      transaction_list = [transaction]
+      expect { statement.view_statement(transaction_list) }.to output(
+        "01/01/2019 || 500 ||  || 500\n"
+      ).to_stdout
     end
 
-    xit 'statement prints two transactions' do
-      transaction_list = [
-        ['01/01/2019', 500, nil, 500],
-        ['01/01/2019', nil, 200, 300]
-      ]
-      expect(statement.view_statement(transaction_list)).to include(
-        '01/01/2019 || 500 ||  || 500'
-      )
-      expect(statement.view_statement(transaction_list)).to include(
-        '01/01/2019 ||  || 200 || 300'
-      )
+    it 'statement prints two transactions' do
+      transaction_list = [transaction2, transaction]
+      expect { statement.view_statement(transaction_list) }.to output(
+        "01/01/2019 || 500 ||  || 500\n01/01/2019 ||  || 200 || 300\n"
+      ).to_stdout
     end
   end
 end
