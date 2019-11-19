@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative './transaction'
 require_relative './account_statement'
 
@@ -8,18 +10,13 @@ class Account
     @transaction_history = []
   end
 
-  def get_balance
-    return @account
-  end
-
-  def deposit(transaction = Transaction.new, date, value)
+  def deposit(date, value, transaction = Transaction.new)
     new_balance = @account += value
     transaction.deposit(date, value, new_balance)
-
     @transaction_history.push(transaction)
   end
 
-  def withdrawal(transaction = Transaction.new, date, value)
+  def withdrawal(date, value, transaction = Transaction.new)
     return false if @account < value
 
     new_balance = @account -= value
@@ -35,6 +32,6 @@ class Account
   private
 
   def title
-    puts "date || credit || debit || balance"
+    puts 'date || credit || debit || balance'
   end
 end

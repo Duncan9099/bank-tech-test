@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class Transaction
   attr_accessor :date, :credit, :debit, :account
@@ -19,5 +20,4 @@ class Transaction
     @debit = value
     @account = balance
   end
-
 end
